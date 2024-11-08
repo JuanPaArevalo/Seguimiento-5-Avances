@@ -30,8 +30,8 @@ public class Matrix {
             for (int j = 0; j < size; j++) {
                 result[i][j] = 0;
                 for (int k = 0; k < size; k++) {
-                    result[i][j] += this.data[i][k] * other.data[k][j];
-                }
+                    result[i][j] += this.data[k][i] * other.data[j][k]; //k / j
+                }                           //i / k
             }
         }
         
