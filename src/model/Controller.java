@@ -3,31 +3,59 @@ package model;
 import model.Matrix;
 
 public class Controller {
-    public int[][] createMatrix(int size, int[][] values) {
-        Matrix matrix = new Matrix(size);
-        matrix.setMatrixValues(values);
-        return matrix.getData();
+
+    private Matrix matrix1;
+    private Matrix matrix2;
+
+    public Controller(){
+
     }
 
-    public int[][] multiplyMatrices(int[][] values1, int[][] values2) {
-        int size = values1.length;
 
-        // Crear matrices usando los valores proporcionados
-        Matrix matrix1 = new Matrix(size);
-        Matrix matrix2 = new Matrix(size);
-        matrix1.setMatrixValues(values1);
-        matrix2.setMatrixValues(values2);
+    public void createMatrices(int size){
+        matrix1 = new Matrix(size);
+        matrix2 = new Matrix(size);
+    }
 
-        // Realizar la multiplicación y devolver el resultado
+    public void fillMatrix1(int i, int j, int number){
+        matrix1.setMatrixValues(i, j, number);
+    }
+
+    public void fillMatrix2(int i, int j, int number){
+        matrix2.setMatrixValues(i, j, number);
+    }
+
+    public Matrix geMatrix1(){
+        return matrix1;
+    }
+
+    public Matrix geMatrix2(){
+        return matrix2;
+    }
+
+    public int[][] multiplyMatrices(){
         return matrix1.multiply(matrix2);
     }
 
-    public void printMatrix(int[][] matrixData) {
+    ///En la unica clase que usted puede imprimirle algo al usuario es en la clase Executable.
+    public String printMatrix(int[][] matrixData) {
+        String message = "";
+
         for (int i = 0; i < matrixData.length; i++) {
             for (int j = 0; j < matrixData[i].length; j++) {
-                System.out.print(matrixData[i][j] + " ");
+
+                message+= "[" + matrixData[i][j] + "]";
             }
-            System.out.println();
+
+            message += "\n";
         }
+
+        return message;
+    }
+
+
+    public void resetMatrices(){
+        matrix1 = null;
+        matrix2 = null;
     }
 }
